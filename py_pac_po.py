@@ -31,8 +31,21 @@ def init_game():
     
     player = state['turn'][1]
     
-    player_input = input(f"Player {player}'s Move (example B2): ")
+    player_input = input(f"Player {player}'s Move (example B2): ").lower()
+    input_validated = False
+    while( input_validated == False ):
+        if len(player_input) > 2:
+            print("Bogus move! Try again...")
+            player_input = input(f"Player {player}'s Move (example B2): ").lower()
+        if player_input[0] not in "abc":
+            print("Bogus move! Try again...")
+            player_input = input(f"Player {player}'s Move (example B2): ").lower()
+        if player_input[1] not in "123":
+            print("Bogus move! Try again...")
+            player_input = input(f"Player {player}'s Move (example B2): ").lower()
+        else:
+            input_validated = True
+
 
 init_game()
-
 
