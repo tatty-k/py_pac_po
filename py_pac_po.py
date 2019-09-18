@@ -15,6 +15,7 @@ def play_game():
         move = get_move()
         board[move] = turn 
         turn = 'O' if turn == 'X' else 'X'
+        winner = get_winner()
 
 
 
@@ -53,5 +54,18 @@ def get_move():
     else:
       print("Bogus move! Try again...\n")
 
+def get_winner():
+  b = board
+  if b['a1'] and b['a1'] == b['a2'] == b['c3']: return b['a1']
+  if b['b1'] and b['b1'] == b['b2'] == b['b3']: return b['b1']
+  if b['c1'] and b['c1'] == b['c2'] == b['c3']: return b['c1']
+  if b['a1'] and b['a1'] == b['b1'] == b['c1']: return b['a1']
+  if b['a2'] and b['a2'] == b['b2'] == b['c2']: return b['a2']
+  if b['a3'] and b['a3'] == b['b3'] == b['c3']: return b['a3']
+  if b['a1'] and b['a1'] == b['b2'] == b['c3']: return b['a1']
+  if b['c1'] and b['c1'] == b['b2'] == b['a3']: return b['c1']
+  return None if None in b.values() else 'T' 
+
+x
 play_game()
 
