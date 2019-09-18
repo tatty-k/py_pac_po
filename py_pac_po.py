@@ -16,6 +16,7 @@ def play_game():
         board[move] = turn 
         turn = 'O' if turn == 'X' else 'X'
         winner = get_winner()
+    handle_winner()
 
 
 
@@ -23,9 +24,9 @@ def play_game():
 def init_game():
     global board, turn, winner
     board = {
-        'a1':' ', 'b1':' ', 'c1': ' ',
-        'a2':' ', 'b2':' ', 'c2':' ', 
-        'a3':' ', 'b3':' ', 'c3':' ' 
+        'a1': None, 'b1': None, 'c1': None,
+        'a2': None, 'b2': None, 'c2': None, 
+        'a3': None, 'b3': None, 'c3': None 
     }
 
     turn = "X"
@@ -49,7 +50,7 @@ def print_board():
 def get_move():
   while True:
     move = input(f"Player {turn}'s Move (example B2): ").lower()
-    if move in board and board[move] ==' ':
+    if move in board and board[move] == None:
       return move
     else:
       print("Bogus move! Try again...\n")
@@ -66,6 +67,11 @@ def get_winner():
   if b['c1'] and b['c1'] == b['b2'] == b['a3']: return b['c1']
   return None if None in b.values() else 'T' 
 
-x
+def handle_winner():
+  print_board()
+  if winner == "T":
+    print("Tie game. Try again!")
+  else:
+    print(f"{winner} wins!")
 play_game()
 
